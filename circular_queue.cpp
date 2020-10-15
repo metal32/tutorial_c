@@ -36,8 +36,9 @@ void CircularBuffer::resize() {
 		i++;
 		item = this->shift();
 	}
+	delete this->arr;
+	cp = cp * 2;
 	this->arr = arr2;
-	delete arr2;
 }
 
 int CircularBuffer::push(int val) {
