@@ -28,9 +28,10 @@ void CircularBuffer::resize() {
 	int * arr2 = new int[this->getCapacity() * 2];
 	int item = this->shift();
 	int i = 0;
-	printf("Resizing method \n");
+	printf("\nResizing method \n");
 	while (item != -1) {
 		printf("%d ", item);
+		size++;
 		arr2[i] = item;
 		i++;
 		item = this->shift();
