@@ -7,28 +7,32 @@ using std::cout;
 using std::endl;
 
 namespace Queue {
-	CircularQueue::CircularQueue() {
+	template<typename T>
+	CircularQueue<T>::CircularQueue() {
 		cp = 5;
-		arr = new int[cp];
+		arr = new T[cp];
 		printf("Circular Queue Of size %d is initialized\n", cp-1);
 	}
 
-	CircularQueue::CircularQueue(int cp_) {
+	template<typename T>
+	CircularQueue<T>::CircularQueue(int cp_) {
 		cp = cp_;
-		arr = new int[cp];
+		arr = new T[cp];
 		printf("Circular Queue Of size %d is initialized\n", cp-1);
 	}
 
-	CircularQueue::~CircularQueue() {
+	template<typename T>
+	CircularQueue<T>::~CircularQueue() {
 		delete arr;
 		arr = nullptr;
 		// cout<<"Destructor called"<<endl;
 	}
 
-	void CircularQueue::resize() {
+	template<typename T>
+	void CircularQueue<T>::resize() {
 		cp = this->getCapacity() * 2;
-		int * arr2 = new int[cp];
-		int item = this->shift();
+		T * arr2 = new T[cp];
+		T item = this->shift();
 		int i = 1;
 		while (item != -1) {
 			arr2[i] = item;
@@ -42,7 +46,8 @@ namespace Queue {
 		size = i - 1;
 	}
 
-	int CircularQueue::push(int val) {
+	template<typename T>
+	int CircularQueue<T>::push(T val) {
 		int newPos = (tail + 1) % cp;
 		if (newPos == head) {
 			// cout << "The queue is full with size "<<size<<endl;
@@ -56,25 +61,28 @@ namespace Queue {
 	    return 0;	
 	}
 
-	int CircularQueue::shift() {
+	template<typename T>
+	T CircularQueue<T>::shift() {
 		if (head == tail) {
+			cout <<"The queue is empty"<<endl;
 			return -1;
 		}
 		size--;
 		head = (head + 1) % cp;
-		int val = arr[head];
-		arr[head] = -1;
+		T val = arr[head];
+		arr[head] = NULL;
 		return val;
 	}
 
-	int CircularQueue::getCapacity() {return cp;}
+	template<typename T>
+	int CircularQueue<T>::getCapacity() {return cp;}
 
-	void CircularQueue::display() {
-		printf("\n");
-		for (int i = 1; i <= size; i++) {
-			cout<<arr[i]<<" ";
-		}
-		printf("\n");
-	}
+	// void CircularQueue::display() {
+	// 	printf("\n");
+	// 	for (int i = 1; i <= size; i++) {
+	// 		cout<<arr[i]<<" ";
+	// 	}
+	// 	printf("\n");
+	// }
 
 }

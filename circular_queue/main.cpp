@@ -1,5 +1,6 @@
 #include<iostream>
 #include "CircularQueue.h"
+#include "CircularQueue.cpp"
 
 using std::cout;
 using std::endl;
@@ -8,7 +9,7 @@ using Queue::CircularQueue;
 void display(int *a, int size);	
 
 int main() {
-	CircularQueue c;
+	CircularQueue<int> c(5);
 	int arr[] = {4, 6, 9, 10, 3, 2, 6, 11, 15};
 	cout << "Adding this array into circular queue ";
 	display(arr, 9);
