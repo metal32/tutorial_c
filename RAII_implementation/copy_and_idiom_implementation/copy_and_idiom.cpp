@@ -27,6 +27,7 @@ class HolderNewGen{
 		}
 
 		HolderNewGen(const HolderNewGen& other) {
+			cout<<"Copy Constructor of HolderGen class called::"<<endl;
 			m_data = new int[other.m_size];
 			std::copy(other.m_data, other.m_data+other.m_size, m_data);
 			m_size = other.m_size;
@@ -34,13 +35,11 @@ class HolderNewGen{
 
 		//Move constructor
 		HolderNewGen(HolderNewGen&& other) noexcept {
+			cout<<"Move Constructor of HolderGen class called::"<<endl;
 			HolderNewGen();
 			swap(*this, other);
-		}
-
-		//Move assignment operator
-		HolderNewGen& operator=(HolderNewGen&& other) noexcept {
-			swap(*this, other);
+			other.m_data = nullptr;
+			other.m_size = 0;
 		}
 
 		//Copy and Swap Idiom way of writing copy assignment operator
@@ -48,6 +47,7 @@ class HolderNewGen{
 		// If copy fails then we will never enter the assignment function and hence our *this will be safe
 		//2) We need to have a swap function as created
 		HolderNewGen& operator=(HolderNewGen other){
+			cout<<"Copy Constructor Assignment of Holder class called::"<<endl;
    			swap(*this, other);
     		return *this;
 		}
@@ -67,14 +67,14 @@ HolderNewGen createNewGenHolder(int size)
 }
 
 int main() {
-	{
-		// Using Copy-and-idioms
+	// Using Copy-and-idioms
 		HolderNewGen h1(10000); // regular constructor
 		HolderNewGen h2 = h1;   // copy constructor
 
 		HolderNewGen h5(10000);  // regular constructor
 		HolderNewGen h6(60000);  // regular constructor
 		h5 = h6;
-	}
+
+		HolderNewGen h3 = createNewGenHolder(2000);
 	return 0;
 }
