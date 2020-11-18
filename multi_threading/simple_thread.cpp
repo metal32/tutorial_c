@@ -12,7 +12,7 @@ void print(int n, const string & s) {
 int main() {
 
 	vector<string> ss = {
-		"Educative.blog",
+	"Educative.blog",
       "Educative",
       "courses",
       "are great"
@@ -21,6 +21,7 @@ int main() {
 	vector<thread> threads;
 
 	for (int i = 0; i < ss.size(); i++) {
+    //they will be copied into the internal storage for the new thread and supplied to the thread function
     	threads.push_back(thread(print, i, ss[i]));
   	}
 
