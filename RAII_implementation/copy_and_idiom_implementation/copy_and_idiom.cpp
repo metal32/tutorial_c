@@ -19,7 +19,10 @@ class HolderNewGen{
 	        swap(first.m_data, second.m_data);
 	    }
 
-	    HolderNewGen() {}
+	    HolderNewGen() {
+	    	m_size = 0;
+	    	m_data = nullptr;
+	    }
 
 		HolderNewGen(int size) {
 			m_size = size;
@@ -30,7 +33,7 @@ class HolderNewGen{
 			cout<<"Copy Constructor of HolderGen class called::"<<endl;
 			m_data = new int[other.m_size];
 			std::copy(other.m_data, other.m_data+other.m_size, m_data);
-			m_size = other.m_size;
+			m_size = other.m_size;	
 		}
 
 		//Move constructor
@@ -38,8 +41,6 @@ class HolderNewGen{
 			cout<<"Move Constructor of HolderGen class called::"<<endl;
 			HolderNewGen();
 			swap(*this, other);
-			other.m_data = nullptr;
-			other.m_size = 0;
 		}
 
 		//Copy and Swap Idiom way of writing copy assignment operator
@@ -48,7 +49,7 @@ class HolderNewGen{
 		//2) We need to have a swap function as created
 		HolderNewGen& operator=(HolderNewGen other){
 			cout<<"Copy Constructor Assignment of Holder class called::"<<endl;
-   			swap(*this, other);
+   			swap(*this, other);	
     		return *this;
 		}
 

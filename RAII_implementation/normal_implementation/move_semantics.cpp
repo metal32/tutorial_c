@@ -46,6 +46,7 @@ class Holder{
 			//It is important to set this, without setting it to null we attempt to delete the memory that is already deleted
 			other.m_data = nullptr;
 			other.m_size = 0;
+			return *this;
 		}
 
 		// Normal way of writing copy assignment operator
